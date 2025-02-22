@@ -52,6 +52,21 @@ table, td, th {
     margin-left: auto;
     margin-right: auto;
 }
+
+.booking{
+    background-color: #8eccf5;
+    color: white;
+    padding: 10px;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+.booking:hover{
+    background-color: #cbe5f7;
+}
+
 .dropbtn {
     background-color: #05146b;
     color: white;
@@ -92,13 +107,9 @@ table, td, th {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.dropdown a:hover {
-    background-color: #ddd;
-}
+.dropdown a:hover {background-color: #ddd;}
 
-.show {
-    display: block;
-}
+.show {display: block;}
 
 * {
     box-sizing: border-box;
@@ -138,7 +149,6 @@ footer {
     background-color: #fff;
     border: 1px solid #ddd;
 }
-
 .time-column{
     width: 80px;
     display: block;
@@ -151,12 +161,14 @@ footer {
     border-right: 1px solid #ccc;
 }
 
+
 .time-column .time-heading {
     font-weight: bold;
     margin-bottom: 5px;
     text-align: center;
     font-size: 14px;
 }
+
 
 .time-column .hour{
     text-align: center;
@@ -187,8 +199,8 @@ footer {
 
 .day-booking {
     display: grid;
-    grid-template-columns: repeat(1,1fr);
-    grid-template-rows: repeat(24,1fr);
+    grid-template-columns: repeat(1fr 1fr);
+    grid-template-rows: repeat(24, 1fr);
     height: 800px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
@@ -206,17 +218,19 @@ footer {
     transition: background-color 0.2s;
 }
 
+
 .hour:hover {
     background-color: orange; /* Light blue on hover */
     cursor: pointer;
 }
 
-@media screen and (max-width: 800px) {
+
+@media (max-width: 600px) {
     .calendar-days {
         flex-direction: column;
         align-items: center;
     }
-    .tim-column {
+    .tim-column{
         width: 100%;
         border-right: none;
     }
