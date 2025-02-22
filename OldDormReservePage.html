@@ -3,99 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #05146b;
-            padding: 30px;
-            text-align: center;
-            font-size: 35px;
-            color: white;
-        }
-
-        footer {
-            background-color: #777;
-            padding: 10px;
-            text-align: center;
-            color: white;
-        }
-
-        .calendar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 10px;
-            background-color: #05146b;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .calendar-days {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-        }
-
-        .day {
-            text-align: center;
-            flex: 1;
-            padding: 10px;
-            background-color: #f1f1f1;
-            margin: 5px;
-            border-radius: 5px;
-        }
-
-        .day p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .day span {
-            font-weight: bold;
-            display: block;
-            font-size: 18px;
-        }
-
-        .day-booking {
-            height: 800px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        @media (max-width: 600px) {
-            .calendar-days {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
     <title>Weekly Calendar</title>
 </head>
 <body>
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    header {
+        background-color: #05146b;
+        padding: 30px;
+        text-align: center;
+        font-size: 35px;
+        color: white;
+    }
+
+    footer {
+        background-color: #777;
+        padding: 10px;
+        text-align: center;
+        color: white;
+    }
+
+    .calendar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+        background-color: #05146b;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .calendar-days {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    .day {
+        text-align: center;
+        flex: 1;
+        padding: 10px;
+        background-color: #f1f1f1;
+        margin: 5px;
+        border-radius: 5px;
+    }
+
+    .day p {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .day span {
+        font-weight: bold;
+        display: block;
+        font-size: 18px;
+    }
+
+    .day-booking {
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        grid-template-rows: repeat(24,1fr);
+        height: 800px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .hour {
+        border: 1px solid #ddd;
+        background-color: #f1f1f1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        transition: background-color 0.2s;
+    }
+
+    .hour:hover {
+        background-color: orange;
+    }
+
+    @media (max-width: 600px) {
+        .calendar-days {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
 <header>
     <h2>Metcalf-Lefevre</h2>
 </header>
@@ -116,7 +132,42 @@
                 days[i].textContent = currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
                 currentDate.setDate(currentDate.getDate() + 1); // Move to the next day
             }
+            const dayBookings = document.querySelectorAll('.day-booking');
+            dayBookings.forEach(dayBooking => {
+                // clear previous hours
+                dayBooking.innerHTML = '';
+
+                // create 2 12 hours
+                for (let i = 0; i < 24; i++) {
+                    const hourBlock = document.createElement('div');
+                    hourBlock.classList.add('hour');
+
+                    let hour;
+                    let period;
+
+                    //makes it AM and PM
+                    if(i == 0){
+                        hour = 12;
+                        period = 'AM';
+                    }
+                    else if (i<12){
+                        hour = i;
+                        period = 'AM';
+                    } else if (i>12) {
+                        hour = i - 12;
+                        period = 'PM'
+                    } else if (i == 12){
+                        hour = 12;
+                        period = 'PM'
+                    }
+
+
+                    hourBlock.textContent = `${hour}:00 ${period}`;
+                    dayBooking.appendChild(hourBlock);
+                }
+            });
         }
+
         window.onload = function() {
             getWeek();
             updateDates();
