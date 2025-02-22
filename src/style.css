@@ -1,13 +1,13 @@
 html, body {
     height: 100%;
     width: 100%;
+    font-family: "DIN Alternate", serif
 }
 
 body {
-    font-family: Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #D3D3D3;
+    background-color: white;
 }
 
 p{
@@ -15,11 +15,10 @@ p{
 }
 
 h1 {
-    background-color: #D3D3D3;
-    color: black;
+    background-color: white;
+    color: #353535;
     padding: 40px;
     font-size: 25px;
-    font-family: Verdana, sans-serif;
 }
 h1 strong {
     display: block;
@@ -27,7 +26,7 @@ h1 strong {
 }
 
 h2 {
-    background-color: #05146b;
+    background-color: #0288d1;
     padding: 30px;
     text-align: center;
     font-size: 35px;
@@ -39,7 +38,6 @@ h2 strong {
 }
 h3 {
     color: white;
-    font-family: Verdana, sans-serif;
     font-size: 16px;
     text-align: center;
 }
@@ -47,7 +45,7 @@ table, td, th {
     border: 1px black;
     border-collapse: collapse;
     border-radius: 25px;
-    background-color: white;
+    background-color: lightgrey;
     padding: 15px;
     width: 1200px;
     margin-left: auto;
@@ -55,32 +53,40 @@ table, td, th {
 }
 
 .booking{
-    background-color: #8eccf5;
-    color: white;
+    background-color: #d9d9d9;
+    color: black;
     padding: 10px;
     font-size: 14px;
-    font-family: Verdana, sans-serif;
     border: none;
     cursor: pointer;
-}
-
-.booking:hover{
-    background-color: #cbe5f7;
-}
-
-.dropbtn {
-    background-color: #05146b;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    font-family: Verdana, sans-serif;
-    cursor: pointer;
-    margin-right: 40px;
+    font-family: "DIN Alternate", serif;
     border-radius: 5px;
 }
 
+.booking:hover{
+    background-color: white;
+}
+.schedbtn{
+    background-color: #0288d1;
+    color: white;
+    font-family: 'DIN Alternate','serif';
+    border: none;
+}
+.dropbtn {
+    background-color: #0288d1;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 40px;
+    border-radius: 5px;
+    font-family: "DIN Alternate", serif;
+    border: none;
+}
+
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #D3D3D3;
+    background-color: #d9d9d9;
+    color: #353535;
 }
 
 .dropdown {
@@ -104,11 +110,10 @@ table, td, th {
     padding: 12px 16px;
     display: block;
     font-size: 16px;
-    font-family: Verdana, sans-serif;
     text-decoration: none;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {background-color: white; color: #353535}
 
 .show {display: block;}
 
@@ -135,7 +140,7 @@ footer {
     justify-content: space-between;
     width: 100%;
     padding: 15px;
-    background-color: #05146b;
+    background: linear-gradient(145deg, #A3C4F3, #E4F0FF);
     color: white;
     font-size: 20px;
     font-weight: bold;
@@ -222,7 +227,7 @@ footer {
 
 
 .hour:hover {
-    background-color: #8eccf5; /* Light blue on hover */
+    background-color: #d9d9d9; /* Light blue on hover */
     cursor: pointer;
 }
 
