@@ -3,168 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #05146b;
-            padding: 30px;
-            text-align: center;
-            font-size: 35px;
-            color: white;
-        }
-
-        footer {
-            background-color: #777;
-            padding: 10px;
-            text-align: center;
-            color: white;
-        }
-
-        .calendar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 10px;
-            background-color: #05146b;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .calendar-days {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-        }
-
-        .day {
-            text-align: center;
-            flex: 1;
-            padding: 10px;
-            background-color: #f1f1f1;
-            margin: 5px;
-            border-radius: 5px;
-        }
-
-        .day p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .day span {
-            font-weight: bold;
-            display: block;
-            font-size: 18px;
-        }
-
-        .day-booking {
-            height: 800px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        @media (max-width: 600px) {
-            .calendar-days {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
     <title>Weekly Calendar</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
 <header>
     <h2>Metcalf-Lefevre</h2>
 </header>
-
 <div class="calendar">
     <div class="calendar-header" id="calendar-header"></div>
     <script>
-        function getWeek(){
-            let today = new Date();
-            let nextSunday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (7 - today.getDay()));
-            document.getElementById("calendar-header").textContent = "Week of " + nextSunday.toLocaleDateString();
+        function getWeek() {
+            let currentDate = new Date();
+            let dayOfWeek = currentDate.getDay();
+
+            let daysToSubtract = dayOfWeek;
+            currentDate.setDate(currentDate.getDate() - daysToSubtract);
+
+            let startDate = currentDate.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
+            document.getElementById("calendar-header").textContent = "Week of " + startDate;
         }
-        function updateDates(){
-            const days = document.querySelectorAll('.day p');
-            const today = new Date();
-            let currentDate = new Date(today);
+
+        function updateDates() {
+            const days = document.querySelectorAll('.day:not(.time-column) p');
+
+            let currentDate = new Date();
+            let dayOfWeek = currentDate.getDay();
+
+            let daysToSubtract = dayOfWeek;
+            currentDate.setDate(currentDate.getDate() - daysToSubtract);
+
             for (let i = 0; i < days.length; i++) {
                 days[i].textContent = currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                currentDate.setDate(currentDate.getDate() + 1); // Move to the next day
+                currentDate.setDate(currentDate.getDate() + 1);
             }
         }
+
+        function generateTimeSlots() {
+            const timeColumn = document.querySelector('.time-column .day-booking');
+            timeColumn.innerHTML = '';
+
+            for (let i = 0; i < 24; i++) {
+                const hourBlock = document.createElement('div');
+                hourBlock.classList.add('hour');
+
+                let hour;
+                let period;
+
+                if (i == 0) {
+                    hour = 12;
+                    period = 'AM';
+                } else if (i < 12) {
+                    hour = i;
+                    period = 'AM';
+                } else if (i == 12) {
+                    hour = 12;
+                    period = 'PM';
+                } else {
+                    hour = i - 12;
+                    period = 'PM';
+                }
+
+                hourBlock.textContent = `${hour}:00 ${period}`;
+                timeColumn.appendChild(hourBlock);
+            }
+        }
+
+        function generateEmptySlots() {
+            const days = document.querySelectorAll('.day:not(.time-column) .day-booking');
+            days.forEach(column => {
+                column.innerHTML = '';
+                for (let i = 0; i < 24; i++) {
+                    const emptyBlock = document.createElement('div');
+                    emptyBlock.classList.add('hour');
+                    column.appendChild(emptyBlock);
+                }
+            });
+        }
+
         window.onload = function() {
             getWeek();
             updateDates();
+            generateTimeSlots();
+            generateEmptySlots();
         };
+
     </script>
 
     <div class="calendar-days">
+        <div class="day time-column">
+            <span>Time</span>
+            <p style ="visibility: hidden;">Placeholder</p>
+            <div class ="day-booking"></div>
+        </div>
+
         <div class="day">
             <span>Sun</span>
             <p></p>
-            <div class="day-booking">
-            </div>
+            <div class="day-booking"></div>
         </div>
         <div class="day">
             <span>Mon</span>
             <p></p>
-            <div class="day-booking">
-            </div>
+            <div class="day-booking"></div>
         </div>
         <div class="day">
             <span>Tue</span>
-            <p>Feb 25</p>
-            <div class="day-booking">
-            </div>
+            <p></p>
+            <div class="day-booking"></div>
         </div>
         <div class="day">
             <span>Wed</span>
-            <p>Feb 26</p>
-            <div class="day-booking">
-            </div>
+            <p></p>
+            <div class="day-booking"></div>
         </div>
         <div class="day">
             <span>Thu</span>
-            <p>Feb 27</p>
-            <div class="day-booking">
-            </div>
+            <p></p>
+            <div class="day-booking"></div>
         </div>
         <div class="day">
             <span>Fri</span>
-            <p>Feb 28</p>
-            <div class="day-booking">
-            </div>
+            <p></p>
+            <div class="day-booking"></div>
         </div>
         <div class="day">
             <span>Sat</span>
-            <p>Feb 29</p>
-            <div class="day-booking">
-            </div>
+            <p></p>
+            <div class="day-booking"></div>
         </div>
     </div>
 </div>
