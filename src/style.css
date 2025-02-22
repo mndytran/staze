@@ -29,6 +29,13 @@ h2 {
     font-size: 35px;
     color: white;
 }
+
+.room-info h2 {
+    margin: 0;
+    padding: 10px;
+    display: block;
+}
+
 .dropbtn {
     background-color: #05146b;
     color: white;
