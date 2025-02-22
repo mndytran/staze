@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>CSS Template</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         * {
@@ -11,9 +10,11 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
-        /* Style the header */
         header {
             background-color: #05146b;
             padding: 30px;
@@ -22,36 +23,6 @@
             color: white;
         }
 
-        /* Create two columns/boxes that floats next to each other */
-        nav {
-            float: left;
-            width: 30%;
-            height: 300px; /* only for demonstration, should be removed */
-            background: #ccc;
-            padding: 20px;
-        }
-
-        /* Style the list inside the menu */
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        article {
-            float: left;
-            padding: 20px;
-            width: 70%;
-            background-color: #f1f1f1;
-        }
-
-        /* Clear floats after the columns */
-        section::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Style the footer */
         footer {
             background-color: #777;
             padding: 10px;
@@ -59,14 +30,69 @@
             color: white;
         }
 
-        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        .calendar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px;
+            background-color: #05146b;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .calendar-days {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .day {
+            text-align: center;
+            flex: 1;
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .day p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .day span {
+            font-weight: bold;
+            display: block;
+            font-size: 18px;
+        }
+
+        .day-booking {
+            height: 800px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
         @media (max-width: 600px) {
-            nav, article {
-                width: 100%;
-                height: auto;
+            .calendar-days {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
+    <title>Weekly Calendar</title>
 </head>
 <body>
 
@@ -74,17 +100,74 @@
     <h2>Metcalf-Lefevre</h2>
 </header>
 
-<section>
-    <nav>
-        <ul>
-            <li><a href="#">Book a room</a></li>
-        </ul>
-    </nav>
+<div class="calendar">
+    <div class="calendar-header" id="calendar-header"></div>
+    <script>
+        function getWeek(){
+            let today = new Date();
+            let nextSunday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (7 - today.getDay()));
+            document.getElementById("calendar-header").textContent = "Week of " + nextSunday.toLocaleDateString();
+        }
+        function updateDates(){
+            const days = document.querySelectorAll('.day p');
+            const today = new Date();
+            let currentDate = new Date(today);
+            for (let i = 0; i < days.length; i++) {
+                days[i].textContent = currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                currentDate.setDate(currentDate.getDate() + 1); // Move to the next day
+            }
+        }
+        window.onload = function() {
+            getWeek();
+            updateDates();
+        };
+    </script>
 
-    <article>
-        <h1>Room 1</h1>
-    </article>
-</section>
+    <div class="calendar-days">
+        <div class="day">
+            <span>Sun</span>
+            <p></p>
+            <div class="day-booking">
+            </div>
+        </div>
+        <div class="day">
+            <span>Mon</span>
+            <p></p>
+            <div class="day-booking">
+            </div>
+        </div>
+        <div class="day">
+            <span>Tue</span>
+            <p>Feb 25</p>
+            <div class="day-booking">
+            </div>
+        </div>
+        <div class="day">
+            <span>Wed</span>
+            <p>Feb 26</p>
+            <div class="day-booking">
+            </div>
+        </div>
+        <div class="day">
+            <span>Thu</span>
+            <p>Feb 27</p>
+            <div class="day-booking">
+            </div>
+        </div>
+        <div class="day">
+            <span>Fri</span>
+            <p>Feb 28</p>
+            <div class="day-booking">
+            </div>
+        </div>
+        <div class="day">
+            <span>Sat</span>
+            <p>Feb 29</p>
+            <div class="day-booking">
+            </div>
+        </div>
+    </div>
+</div>
 
 <footer>
     <p>staze</p>
@@ -92,4 +175,3 @@
 
 </body>
 </html>
-
