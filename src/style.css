@@ -1,0 +1,147 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+p{
+    color: black;
+}
+
+h1 {
+    background-color: slategray;
+    color: white;
+    padding: 40px;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    background-color: #05146b;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+.dropbtn {
+    background-color: #05146b;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    cursor: pointer;
+    margin-right: 40px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: lightslategray;
+}
+
+.dropdown {
+    float: right;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+* {
+    box-sizing: border-box;
+}
+
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    background-color: #05146b;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.calendar-days {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.day {
+    text-align: center;
+    flex: 1;
+    padding: 10px;
+    background-color: #f1f1f1;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.day p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.day span {
+    font-weight: bold;
+    display: block;
+    font-size: 18px;
+}
+
+.day-booking {
+    height: 800px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .calendar-days {
+        flex-direction: column;
+        align-items: center;
+    }
+}
