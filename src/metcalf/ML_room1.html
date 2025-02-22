@@ -3,100 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #05146b;
-            padding: 30px;
-            text-align: center;
-            font-size: 35px;
-            color: white;
-        }
-
-        footer {
-            background-color: #777;
-            padding: 10px;
-            text-align: center;
-            color: white;
-        }
-
-        .calendar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 10px;
-            background-color: #05146b;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .calendar-days {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-        }
-
-        .day {
-            text-align: center;
-            flex: 1;
-            padding: 10px;
-            background-color: #f1f1f1;
-            margin: 5px;
-            border-radius: 5px;
-        }
-
-        .day p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .day span {
-            font-weight: bold;
-            display: block;
-            font-size: 18px;
-        }
-
-        .day-booking {
-            height: 800px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        @media (max-width: 600px) {
-            .calendar-days {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
     <title>Weekly Calendar</title>
 </head>
 <body>
 
 <header>
+    <h1>
+        STAZE
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Reserve a Room</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#">Echols-Humphreys</a>
+                <a href="#">Emmett-Page</a>
+                <a href="#">Metcalf-Lefevre</a>
+            </div>
+        </div>
+        <br>
+        find your next study spot
+    </h1>
     <h2>Metcalf-Lefevre</h2>
 </header>
 
@@ -172,6 +97,28 @@
 <footer>
     <p>staze</p>
 </footer>
+
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
 
 </body>
 </html>
