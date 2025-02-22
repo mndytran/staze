@@ -44,9 +44,9 @@ h3 {
     text-align: center;
 }
 table, td, th {
-    background-color: white;
     border: 1px black;
     border-collapse: collapse;
+    background-color: white;
     padding: 15px;
     width: 1200px;
     margin-left: auto;
