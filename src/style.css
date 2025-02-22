@@ -13,7 +13,9 @@ body {
 p{
     color: black;
 }
-
+p strong {
+    font-size: 130%;
+}
 h1 {
     background-color: white;
     color: #353535;
