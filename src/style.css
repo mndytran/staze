@@ -37,6 +37,21 @@ h2 strong {
     display: block;
     font-size: 125%;
 }
+
+.booking {
+    background-color: #8eccf5;
+    color: white;
+    padding: 12px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+.booking:hover{
+    background-color: #cbe5f7;
+}
+
 .dropbtn {
     background-color: #05146b;
     color: white;
