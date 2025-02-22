@@ -7,7 +7,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: slategray;
 }
 
 p{
@@ -21,6 +21,10 @@ h1 {
     font-size: 25px;
     font-family: Arial, Helvetica, sans-serif;
 }
+h1 strong {
+    display: block;
+    font-size: 175%;
+}
 
 h2 {
     background-color: #05146b;
@@ -29,13 +33,10 @@ h2 {
     font-size: 35px;
     color: white;
 }
-
-.room-info h2 {
-    margin: 0;
-    padding: 10px;
+h2 strong {
     display: block;
+    font-size: 125%;
 }
-
 .dropbtn {
     background-color: #05146b;
     color: white;
