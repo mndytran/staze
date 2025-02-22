@@ -92,9 +92,13 @@ table, td, th {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {
+    background-color: #ddd;
+}
 
-.show {display: block;}
+.show {
+    display: block;
+}
 
 * {
     box-sizing: border-box;
@@ -127,6 +131,7 @@ footer {
 
 .calendar-days {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     width: 100%;
     padding: 20px;
@@ -134,9 +139,35 @@ footer {
     border: 1px solid #ddd;
 }
 
+.time-column{
+    width: 80px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    border-right: 1px solid #ccc;
+}
+
+.time-column .time-heading {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.time-column .hour{
+    text-align: center;
+    margin: 5px 0;
+    font-size: 12px;
+}
+
 .day {
     text-align: center;
     flex: 1;
+    flex-direction: column;
     padding: 10px;
     background-color: #f1f1f1;
     margin: 5px;
@@ -155,6 +186,9 @@ footer {
 }
 
 .day-booking {
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(24,1fr);
     height: 800px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
@@ -162,9 +196,28 @@ footer {
     font-size: 14px;
 }
 
-@media (max-width: 600px) {
+.hour {
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transition: background-color 0.2s;
+}
+
+.hour:hover {
+    background-color: orange; /* Light blue on hover */
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
     .calendar-days {
         flex-direction: column;
         align-items: center;
+    }
+    .tim-column {
+        width: 100%;
+        border-right: none;
     }
 }
