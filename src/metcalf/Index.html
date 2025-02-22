@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Book a Room</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        form {
+            max-width: 500px;
+            margin: auto;
+            background: #05146b;
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+        }
+        label, select, input {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background-color: #8eccf5;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #cbe5f7;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Book a Room</h2>
+
+<form id="timeForm">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="startTime">Start Time:</label>
+    <select id="startTime" name="startTime">
+        <option value="12:00 AM">12:00 AM</option>
+        <option value="1:00 AM">1:00 AM</option>
+        <option value="2:00 AM">2:00 AM</option>
+        <option value="3:00 AM">3:00 AM</option>
+        <option value="4:00 AM">4:00 AM</option>
+        <option value="5:00 AM">5:00 AM</option>
+        <option value="6:00 AM">6:00 AM</option>
+        <option value="7:00 AM">7:00 AM</option>
+        <option value="8:00 AM">8:00 AM</option>
+        <option value="9:00 AM">9:00 AM</option>
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="11:00 AM">11:00 AM</option>
+        <option value="12:00 PM">12:00 PM</option>
+        <option value="1:00 PM">1:00 PM</option>
+        <option value="2:00 PM">2:00 PM</option>
+        <option value="3:00 PM">3:00 PM</option>
+        <option value="4:00 PM">4:00 PM</option>
+        <option value="5:00 PM">5:00 PM</option>
+        <option value="6:00 PM">6:00 PM</option>
+        <option value="7:00 PM">7:00 PM</option>
+        <option value="8:00 PM">8:00 PM</option>
+        <option value="9:00 PM">9:00 PM</option>
+        <option value="10:00 PM">10:00 PM</option>
+        <option value="11:00 PM">11:00 PM</option>
+    </select>
+
+    <label for="endTime">End Time:</label>
+    <select id="endTime" name="endTime">
+        <option value="12:00 AM">12:00 AM</option>
+        <option value="1:00 AM">1:00 AM</option>
+        <option value="2:00 AM">2:00 AM</option>
+        <option value="3:00 AM">3:00 AM</option>
+        <option value="4:00 AM">4:00 AM</option>
+        <option value="5:00 AM">5:00 AM</option>
+        <option value="6:00 AM">6:00 AM</option>
+        <option value="7:00 AM">7:00 AM</option>
+        <option value="8:00 AM">8:00 AM</option>
+        <option value="9:00 AM">9:00 AM</option>
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="11:00 AM">11:00 AM</option>
+        <option value="12:00 PM">12:00 PM</option>
+        <option value="1:00 PM">1:00 PM</option>
+        <option value="2:00 PM">2:00 PM</option>
+        <option value="3:00 PM">3:00 PM</option>
+        <option value="4:00 PM">4:00 PM</option>
+        <option value="5:00 PM">5:00 PM</option>
+        <option value="6:00 PM">6:00 PM</option>
+        <option value="7:00 PM">7:00 PM</option>
+        <option value="8:00 PM">8:00 PM</option>
+        <option value="9:00 PM">9:00 PM</option>
+        <option value="10:00 PM">10:00 PM</option>
+        <option value="11:00 PM">11:00 PM</option>
+    </select>
+
+    <button type="button" onclick="submitForm()">Submit</button>
+</form>
+
+<p id="response" style="text-align:center; font-size:18px; color:green;"></p>
+
+<script>
+    function submitForm() {
+        let date = document.getElementById("date").value;
+        let startTime = document.getElementById("startTime").value;
+        let endTime = document.getElementById("endTime").value;
+
+
+        let startHour = convertTimeTo24Hour(startTime);
+        let endHour = convertTimeTo24Hour(endTime);
+
+        // Validate time difference
+        if (endHour <= startHour) {
+            alert("End time must be after the start time.");
+            return;
+        }
+
+        if (endHour - startHour > 3) {
+            alert("Reservations cannot exceed 3 hours. Please select a shorter time slot.");
+            return;
+        }
+
+        document.getElementById("response").innerText = `Room successfully booked on ${date} from ${startTime} to ${endTime}.`;
+
+        const formData = {
+            date: date,
+            startTime: startTime,
+            endTime: endTime
+        };
+
+
+        google.script.run.withSuccessHandler(function(response) {
+            document.getElementById("response").innerText = response;
+            document.getElementById("timeForm").reset();
+        }).Submit(formData);
+
+    }
+
+    function convertTimeTo24Hour(time) {
+        let [hour, modifier] = time.split(" ");
+        let [h, m] = hour.split(":");
+        h = parseInt(h, 10);
+
+        if (modifier === "PM" && h !== 12) {
+            h += 12;
+        } else if (modifier === "AM" && h === 12) {
+            h = 0;
+        }
+
+        return h;
+    }
+
+
+</script>
+
+</body>
+</html>
