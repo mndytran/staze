@@ -149,6 +149,14 @@ document.getElementById('booking-form').addEventListener('submit', function (e) 
         slotEnd = 0; // Handle 12 AM as 0 hour
     }
 
+    if(slotEnd-slotStart <= 0){
+        alert("Invalid time slot. Try again!");
+        return;
+    }
+    if(slotEnd-slotStart > 3){
+        alert("Can't book over 3 hours. Try again!");
+        return;
+    }
 
 
 
