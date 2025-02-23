@@ -241,6 +241,14 @@ footer {
     cursor: pointer;
 }
 
+.selected {
+    background-color: #ff5722;
+}
+
+.booked {
+    background-color: #ff5722;
+    cursor: not-allowed;
+}
 
 @media (max-width: 600px) {
     .calendar-days {
