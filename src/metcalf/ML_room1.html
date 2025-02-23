@@ -25,11 +25,6 @@
     <h2>
         <strong>Metcalf-Lefevre</strong><br>
         Room 1
-        <div>
-            <a href="https://script.google.com/macros/s/AKfycbxvQimB0qHOyz33jlPfIEd4GWwbndLxh4QCYCPwSQeh6Z_Svndm6XstFYbAao759EaX/exec" target="_blank">
-                <button class="booking">BOOK</button>
-            </a>
-        </div>
     </h2>
 
 </header>
@@ -38,8 +33,11 @@
     <div class="calendar-header" id="calendar-header"></div>
 
     <form id="booking-form" class="booking-form">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" required>
+
         <label for="day">Choose Day:</label>
-        <select id="day" name="day">
+        <select id="day" required>
             <option value="Sun">Sun</option>
             <option value="Mon">Mon</option>
             <option value="Tue">Tue</option>

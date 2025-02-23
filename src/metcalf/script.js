@@ -67,15 +67,15 @@ function generateTimeSlots() {
 }
 
 //saves new time slot for a DAY in the week
-function saveBookedSlot(day, timeSlot){
+function saveBookedSlot(day, timeSlot, name){
     let bookedSlots = JSON.parse(localStorage.getItem('bookedSlots')) || {};
     if(!bookedSlots[day]){
         bookedSlots[day] = [];
     }
-    bookedSlots[day].push(timeSlot);
+    bookedSlots[day].push({ time: timeSlot, bookedBy: name });
     localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
 }
-//gets ALL booked slots
+//gets the slots that are booked
 function getBookedSlots(){
     return JSON.parse(localStorage.getItem('bookedSlots')) || {};
 }
@@ -94,10 +94,17 @@ function generateEmptySlots() {
             const emptyBlock = document.createElement('div');
             emptyBlock.classList.add('hour');
 
-            //colors the corresponding slot
-            if (bookedSlots[dayName] && bookedSlots[dayName].includes(i)) {
-                emptyBlock.classList.add('booked');
+            if(bookedSlots[dayName]){
+                const bookedSlot = bookedSlots[dayName].find(slot => slot.time === i)
+                if(bookedSlot){
+                    emptyBlock.classList.add('booked');
+                    emptyBlock.setAttribute('title', `Booked by: ${bookedSlot.bookedBy}`);
+                }
             }
+            //colors the corresponding slot
+            /*if (bookedSlots[dayName] && bookedSlots[dayName].includes(i)) {
+                emptyBlock.classList.add('booked');
+            }*/
             column.appendChild(emptyBlock);
         }
     });
@@ -107,6 +114,7 @@ function generateEmptySlots() {
 document.getElementById('booking-form').addEventListener('submit', function (e) {
     e.preventDefault();  // Prevent form from refreshing the page
 
+    const selectedName = document.getElementById('name').value;
     const selectedDay = document.getElementById('day').value; // Get selected day
     const selectedTime = document.getElementById('time').value; // Get selected time slot
 
@@ -133,6 +141,7 @@ document.getElementById('booking-form').addEventListener('submit', function (e) 
             saveBookedSlot(selectedDay, timeSlot);
         }
     });
+    saveBookedSlot(selectedDay, timeSlot, selectedName);
     generateEmptySlots();
 });
 
