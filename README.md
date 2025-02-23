@@ -1,7 +1,4 @@
 # staze
-<p align="center">
-<img align=center height=100px>
-</p>
 <h2 align="center">Staze -  Website</h2>
 
 
