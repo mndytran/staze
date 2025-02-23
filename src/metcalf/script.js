@@ -138,7 +138,7 @@ document.getElementById('booking-form').addEventListener('submit', function (e) 
         block.classList.remove('selected');
         if (index === timeSlot) {
             block.classList.add('selected');
-            saveBookedSlot(selectedDay, timeSlot);
+            saveBookedSlot(selectedDay, timeSlot, selectedName);
         }
     });
     saveBookedSlot(selectedDay, timeSlot, selectedName);
