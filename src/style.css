@@ -54,6 +54,10 @@ table, td, th {
     margin-right: auto;
     text-align: center;
 }
+th {
+    horiz-align: center;
+    font-size: 130%
+}
 
 .booking{
     background-color: #d9d9d9;
