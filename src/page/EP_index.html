@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Metcalf-Lefevre</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="header" id="header">
+    <h1>
+      <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dorms</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">Echols-Humphreys</a>
+          <a href="#">Emmett-Page</a>
+          <a href="../metcalf/ML_index.html">Metcalf-Lefevre</a>
+        </div>
+      </div>
+      <strong><a href="../mainPages/homepage.html" style="text-decoration: none; color: #0288d1">STAZE</a></strong>
+      find your next study spot
+    </h1>
+  </div>
+  <header>
+    <h2>
+      <strong>Emmett-Page</strong>
+    </h2>
+  </header>
+
+  <h3>
+    Study Rooms
+  </h3>
+  <table>
+    <tr>
+      <th>Room Number</th>
+      <th>Description</th>
+      <th>Schedule</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Small with table and chairs</td>
+      <td>
+        <button class="schedbtn"
+                onclick="window.location='ML_room1.html'">
+        View Schedule
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Small chairs</td>
+      <td>
+        <button class="schedbtn"
+                   onclick="window.location='ML_room2.html'">
+        View Schedule
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Big with TV</td>
+      <td>
+        <button class="schedbtn"
+                   onclick="window.location='ML_room3.html'">
+        View Schedule
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>
