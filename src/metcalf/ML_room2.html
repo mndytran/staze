@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weekly Calendar</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="header" id="header">
+    <h1>
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Dorms</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#">Echols-Humphreys</a>
+                <a href="#">Emmett-Page</a>
+                <a href="../metcalf/ML_index.html">Metcalf-Lefevre</a>
+            </div>
+        </div>
+        <strong><a href="../mainPages/homepage.html" style="text-decoration: none; color: #0288d1">STAZE</a></strong>
+        find your next study spot
+    </h1>
+</div>
+<header>
+    <h2>
+        <strong>Metcalf-Lefevre</strong><br>
+        Room 2
+    </h2>
+
+
+</header>
+
+
+<div class="calendar">
+    <div class="calendar-header" id="calendar-header"></div>
+
+
+    <form id="booking-form" class="booking-form">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" required>
+
+
+        <label for="day">Choose Day:</label>
+        <select id="day" required>
+            <option value="Sun">Sun</option>
+            <option value="Mon">Mon</option>
+            <option value="Tue">Tue</option>
+            <option value="Wed">Wed</option>
+            <option value="Thu">Thu</option>
+            <option value="Fri">Fri</option>
+            <option value="Sat">Sat</option>
+        </select>
+        <label for="startTime">Choose Start Time:</label>
+        <select id="startTime" name="startTime">
+            <option value="12:00 AM">12:00 AM</option>
+            <option value="1:00 AM">1:00 AM</option>
+            <option value="2:00 AM">2:00 AM</option>
+            <option value="3:00 AM">3:00 AM</option>
+            <option value="4:00 AM">4:00 AM</option>
+            <option value="5:00 AM">5:00 AM</option>
+            <option value="6:00 AM">6:00 AM</option>
+            <option value="7:00 AM">7:00 AM</option>
+            <option value="8:00 AM">8:00 AM</option>
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+            <option value="6:00 PM">6:00 PM</option>
+            <option value="7:00 PM">7:00 PM</option>
+            <option value="8:00 PM">8:00 PM</option>
+            <option value="9:00 PM">9:00 PM</option>
+            <option value="10:00 PM">10:00 PM</option>
+            <option value="11:00 PM">11:00 PM</option>
+        </select>
+        <label for="endTime">Choose End Time:</label>
+        <select id="endTime" name="endTime">
+            <option value="12:00 AM">12:00 AM</option>
+            <option value="1:00 AM">1:00 AM</option>
+            <option value="2:00 AM">2:00 AM</option>
+            <option value="3:00 AM">3:00 AM</option>
+            <option value="4:00 AM">4:00 AM</option>
+            <option value="5:00 AM">5:00 AM</option>
+            <option value="6:00 AM">6:00 AM</option>
+            <option value="7:00 AM">7:00 AM</option>
+            <option value="8:00 AM">8:00 AM</option>
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+            <option value="6:00 PM">6:00 PM</option>
+            <option value="7:00 PM">7:00 PM</option>
+            <option value="8:00 PM">8:00 PM</option>
+            <option value="9:00 PM">9:00 PM</option>
+            <option value="10:00 PM">10:00 PM</option>
+            <option value="11:00 PM">11:00 PM</option>
+        </select>
+        <button type="submit" class="book-btn">Book</button>
+        <p id="error-message" class="error-message"></p>
+    </form>
+
+
+    <script src="script2.js"></script>
+
+
+    <div class="calendar-days">
+        <div class="day time-column">
+            <span>Time</span>
+            <p style ="visibility: hidden;">Placeholder</p>
+            <div class ="day-booking"></div>
+        </div>
+
+
+
+
+        <div class="day">
+            <span>Sun</span>
+            <p></p>
+            <div class="day-booking"></div>
+        </div>
+        <div class="day">
+            <span>Mon</span>
+            <p></p>
+            <div class="day-booking"></div>
+        </div>
+        <div class="day">
+            <span>Tue</span>
+            <p></p>
+            <div class="day-booking"></div>
+        </div>
+        <div class="day">
+            <span>Wed</span>
+            <p></p>
+            <div class="day-booking"></div>
+        </div>
+        <div class="day">
+            <span>Thu</span>
+            <p></p>
+            <div class="day-booking"></div>
+        </div>
+        <div class="day">
+            <span>Fri</span>
+            <p></p>
+            <div class="day-booking"></div>
+        </div>
+        <div class="day">
+            <span>Sat</span>
+            <p></p>
+            <div class="day-booking"></div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<footer>
+    <p>staze</p>
+</footer>
+
+
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
