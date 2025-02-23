@@ -1,4 +1,3 @@
-# staze
 <h2 align="center">Staze -  Website</h2>
 
 
