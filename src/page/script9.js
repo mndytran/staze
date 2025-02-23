@@ -84,9 +84,9 @@ function generateEmptySlots() {
 
 
     // reset booked slots every Sunday
-    if (currentDayOfWeek === 0) {
+    /*if (currentDayOfWeek === 0) {
         localStorage.removeItem('bookedSlots9');
-    }
+    }*/
 
     const bookedSlots9 = getBookedSlots();
 
