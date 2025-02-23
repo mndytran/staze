@@ -83,7 +83,14 @@ function getBookedSlots(){
 //generates empty slots + booked slots (look further down)
 function generateEmptySlots() {
     const days = document.querySelectorAll('.day:not(.time-column) .day-booking');
-    let currentHour = new Date().getHours(); // Get the current hour
+    let currentHour = new Date().getHours();
+    const currentDate = new Date();
+    const currentDayOfWeek = currentDate.getDay();
+
+    // reset booked slots every Sunday
+    if (currentDayOfWeek === 0) {
+        localStorage.removeItem('bookedSlots');
+    }
 
     const bookedSlots = getBookedSlots();
 
@@ -94,21 +101,20 @@ function generateEmptySlots() {
             const emptyBlock = document.createElement('div');
             emptyBlock.classList.add('hour');
 
-            if(bookedSlots[dayName]){
-                const bookedSlot = bookedSlots[dayName].find(slot => slot.time === i)
-                if(bookedSlot){
+            // check for booked slots
+            if (bookedSlots[dayName]) {
+                const bookedSlot = bookedSlots[dayName].find(slot => slot.time === i);
+                if (bookedSlot) {
                     emptyBlock.classList.add('booked');
                     emptyBlock.setAttribute('title', `Booked by: ${bookedSlot.bookedBy}`);
                 }
             }
-            //colors the corresponding slot
-            /*if (bookedSlots[dayName] && bookedSlots[dayName].includes(i)) {
-                emptyBlock.classList.add('booked');
-            }*/
+
             column.appendChild(emptyBlock);
         }
     });
 }
+
 
 //form submission
 document.getElementById('booking-form').addEventListener('submit', function (e) {
