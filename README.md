@@ -1,6 +1,6 @@
 # staze
 <p align="center">
-<img align=center height=100px src="dogologo1.PNG">
+<img align=center height=100px src="/staze/dogologo1.PNG">
 </p>
 <h2 align="center">Staze -  Website</h2>
 
