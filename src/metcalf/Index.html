@@ -109,7 +109,7 @@
 <p id="response" style="text-align:center; font-size:18px; color:green;"></p>
 
 <script>
-    function submitForm() {
+    async function submitForm() {
         let date = document.getElementById("date").value;
         let startTime = document.getElementById("startTime").value;
         let endTime = document.getElementById("endTime").value;
@@ -129,6 +129,13 @@
             return;
         }
 
+        let available = await checkAvailability(date, startTime, endTime);
+
+        if (!available) {
+            alert("This time slot is already booked. Please choose a different time.");
+            return;
+        }
+
         document.getElementById("response").innerText = `Room successfully booked on ${date} from ${startTime} to ${endTime}.`;
 
         const formData = {
@@ -138,10 +145,17 @@
         };
 
 
-        google.script.run.withSuccessHandler(function(response) {
-            document.getElementById("response").innerText = response;
-            document.getElementById("timeForm").reset();
-        }).Submit(formData);
+        fetch("https://script.google.com/macros/s/AKfycbxGAZ5DJh3d8y0z0kf3mTqcsxjIOS5cq_gHmmLVBbBJrw67ccNvqx28k7AincOJlCpN/exec", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("response").innerText = data;
+                document.getElementById("timeForm").reset();
+            })
+            .catch(error => console.error("Error:", error));
 
     }
 
@@ -159,7 +173,44 @@
         return h;
     }
 
+    async function checkAvailability(date, startTime, endTime) {
+        let availability = true;
+        const sheetId = "19OiIq7F_LFC7_nznZ-iIp3voSJqRdjwvpJvYPigP57U"; // Replace with your actual Google Sheet ID
+        const apiKey = "AIzaSyD6rJkIJp8oKdtoKySjKu8_s54NncugrtU"; // Replace with your Google API Key
+        const sheetName = "Bookings"; // Replace with the name of your sheet
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?key=${apiKey}`;
 
+        try {
+            let response = await fetch(url);
+            let data = await response.json();
+            let bookings = data.values;
+
+            if (!bookings) return true; // If no data, room is available
+
+            let startHour = convertTimeTo24Hour(startTime);
+            let endHour = convertTimeTo24Hour(endTime);
+
+            // Check for conflicts
+            for (let i = 1; i < bookings.length; i++) { // Skip header row
+                let [bookedDate, bookedStart, bookedEnd] = bookings[i];
+
+                if (bookedDate === date) {
+                    let bookedStartHour = convertTimeTo24Hour(bookedStart);
+                    let bookedEndHour = convertTimeTo24Hour(bookedEnd);
+
+                    // Check if times overlap
+                    if (!(endHour <= bookedStartHour || startHour >= bookedEndHour)) {
+                        return false; // Conflict found, room is not available
+                    }
+                }
+            }
+
+            return true; // No conflicts found, room is available
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            return false; // Assume unavailable on error
+        }
+    }
 </script>
 
 </body>
