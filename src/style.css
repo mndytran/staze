@@ -10,6 +10,20 @@ body {
     background-color: white;
 }
 
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 30px;
+
+}
+
+.logo {
+    height: 100px; /* Reduced size */
+    margin-right: 1px;
+}
+
+
 p{
     color: black;
 }
@@ -103,6 +117,7 @@ th {
     float: right;
     position: relative;
     display: inline-block;
+    margin-right: auto;
 }
 
 .dropdown-content {
